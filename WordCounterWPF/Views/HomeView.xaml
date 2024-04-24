@@ -27,7 +27,10 @@
                     <ComboBoxItem Content="Count: Characters" />
                 </ComboBox>
 
-                <ListView x:Name="DataList" Margin="0,10">
+                <ListView
+                    x:Name="DataList"
+                    Margin="0,10"
+                    ItemsSource="{Binding DataObjects}">
                     <ListView.View>
                         <GridView AllowsColumnReorder="False">
                             <GridViewColumn Header="Detail" />
