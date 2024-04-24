@@ -42,7 +42,8 @@ public class TextInterpreter {
     }
 
     public static int GetPageCount(string text) {
-        return ((int) Math.Floor((double) GetTotalLength(text) / 400));
+        int avgWordsInPage = 400;
+        return GetWordCount(text) / avgWordsInPage;
     }
 
     // TODO: Create additional parse methods
