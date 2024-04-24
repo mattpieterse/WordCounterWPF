@@ -34,10 +34,33 @@ public class TextInterpreter {
     }
 
     public static int GetParagraphCount(string text) {
-        int count = 0;
-        foreach (char c in text) {
-            if (c == '\n' || c == '\r') count++;
+        if (string.IsNullOrEmpty(text)) {
+            return 0;
         }
+
+        int count = 0;
+        bool isInsideParagraph = false;
+        for (int i = 0; i < text.Length; i++) {
+            char c = text[i];
+
+            // Check for non-white character
+            if (!char.IsWhiteSpace(c) && (i != text.Length - 1)) {
+                // Check if still inside of a paragraph
+                if (!isInsideParagraph) {
+                    isInsideParagraph = true;
+                    count++;
+                }
+            }
+            else { // End of paragraph with consecutive empty lines
+                isInsideParagraph = false;
+            }
+        }
+
+        // Check if this is the final paragraph
+        if (isInsideParagraph) {
+            count++;
+        }
+
         return count;
     }
 
