@@ -1,4 +1,6 @@
-﻿namespace WordCounterWPF.Models;
+﻿using System.Diagnostics;
+
+namespace WordCounterWPF.Models;
 
 public class TextInterpreter {
 
@@ -17,6 +19,30 @@ public class TextInterpreter {
             if (!char.IsWhiteSpace(c)) count++;
         }
         return count;
+    }
+
+    public static int GetSpacesCount(string text) {
+        return GetTotalLength(text) - GetTotalLength(text.Replace(" ", ""));
+    }
+
+    public static int GetSentencesCount(string text) {
+        int count = 0;
+        foreach (char c in text) {
+            if (c == '.' || c == '!' || c == '?') count++;
+        }
+        return count;
+    }
+
+    public static int GetParagraphCount(string text) {
+        int count = 0;
+        foreach (char c in text) {
+            if (c == '\n' || c == '\r') count++;
+        }
+        return count;
+    }
+
+    public static int GetPageCount(string text) {
+        return ((int) Math.Floor((double) GetTotalLength(text) / 400));
     }
 
     // TODO: Create additional parse methods
