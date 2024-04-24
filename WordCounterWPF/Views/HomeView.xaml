@@ -16,7 +16,16 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
-            <TextBox x:Name="TextInput" TextChanged="TextInput_OnTextChanged" />
+            <TextBox
+                x:Name="TextInput"
+                AcceptsReturn="True"
+                AcceptsTab="True"
+                AllowDrop="True"
+                FocusVisualStyle="{x:Null}"
+                TextAlignment="Justify"
+                TextChanged="TextInput_OnTextChanged"
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Visible" />
         </Grid>
 
         <Grid Grid.Column="1" Margin="20,0,0,0">
