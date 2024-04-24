@@ -25,6 +25,14 @@ public class TextInterpreter {
         return GetTotalLength(text) - GetTotalLength(text.Replace(" ", ""));
     }
 
+    public static int GetSentencesCount(string text) {
+        int count = 0;
+        foreach (char c in text) {
+            if (c == '.' || c == '!' || c == '?') count++;
+        }
+        return count;
+    }
+
     public static int GetParagraphCount(string text) {
         int count = 0;
         foreach (char c in text) {
