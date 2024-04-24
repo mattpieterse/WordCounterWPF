@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
-            <TextBox x:Name="TextInput" />
+            <TextBox x:Name="TextInput" TextChanged="TextInput_OnTextChanged" />
         </Grid>
 
         <Grid Grid.Column="1" Margin="20,0,0,0">

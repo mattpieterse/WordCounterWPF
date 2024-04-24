@@ -13,4 +13,8 @@ public partial class HomeView : UserControl {
         _viewModel = new HomeViewModel();
         DataContext = _viewModel;
     }
+
+    private void TextInput_OnTextChanged(object sender, TextChangedEventArgs e) {
+        // TODO: ..
+    }
 }
