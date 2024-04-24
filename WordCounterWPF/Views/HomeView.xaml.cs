@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Diagnostics;
+using System.Windows.Controls;
 using WordCounterWPF.ViewModels;
 
 namespace WordCounterWPF.Views; 
@@ -14,7 +15,10 @@ public partial class HomeView : UserControl {
         DataContext = _viewModel;
     }
 
+    // Event Handlers
+
     private void TextInput_OnTextChanged(object sender, TextChangedEventArgs e) {
-        // TODO: ..
+        Debug.WriteLine($"🔔 TextChanged :: <{e}>");
+        _viewModel.UpdateObjectsDatabase(TextInput.Text);
     }
 }

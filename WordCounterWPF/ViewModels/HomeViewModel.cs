@@ -12,7 +12,7 @@ public class HomeViewModel {
         DataObjects = TextDataController.GetDataObjects();
     }
 
-    public void UpdateObjectDatabase(string text) {
+    public void UpdateObjectsDatabase(string text) {
         TextDataController.Clear();
         ObservableCollection<TextDataObject> StagingDB = [
             new TextDataObject("Length", TextInterpreter.GetTotalLength(text)),
