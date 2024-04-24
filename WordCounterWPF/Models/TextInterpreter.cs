@@ -19,5 +19,9 @@ public class TextInterpreter {
         return count;
     }
 
+    public static int GetSpacesCount(string text) {
+        return GetTotalLength(text) - GetTotalLength(text.Replace(" ", ""));
+    }
+
     // TODO: Create additional parse methods
 }
