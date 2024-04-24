@@ -22,7 +22,7 @@
         <Grid Grid.Column="1" Margin="20,0,0,0">
             <StackPanel>
                 <ComboBox SelectedIndex="0">
-                    <ComboBoxItem Content="General analysis" />
+                    <ComboBoxItem Content="General Analysis" />
                     <ComboBoxItem Content="Count: Unique Words" />
                     <ComboBoxItem Content="Count: Characters" />
                 </ComboBox>
