@@ -9,5 +9,33 @@
     d:DesignWidth="1280"
     mc:Ignorable="d">
 
-    <Grid />
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <TextBox x:Name="TextInput" />
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="20,0,0,0">
+            <StackPanel>
+                <ComboBox SelectedIndex="0">
+                    <ComboBoxItem Content="General analysis" />
+                    <ComboBoxItem Content="Count: Unique Words" />
+                    <ComboBoxItem Content="Count: Characters" />
+                </ComboBox>
+
+                <ListView x:Name="DataList" Margin="0,10">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="False">
+                            <GridViewColumn Header="Detail" />
+                            <GridViewColumn Header="Count" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
 </UserControl>
