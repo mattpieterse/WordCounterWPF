@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
-            <TextBox x:Name="TextInput" />
+            <TextBox x:Name="TextInput" TextChanged="TextInput_OnTextChanged" />
         </Grid>
 
         <Grid Grid.Column="1" Margin="20,0,0,0">
@@ -27,11 +27,14 @@
                     <ComboBoxItem Content="Count: Characters" />
                 </ComboBox>
 
-                <ListView x:Name="DataList" Margin="0,10">
+                <ListView
+                    x:Name="DataList"
+                    Margin="0,10"
+                    ItemsSource="{Binding DataObjects}">
                     <ListView.View>
                         <GridView AllowsColumnReorder="False">
-                            <GridViewColumn Header="Detail" />
-                            <GridViewColumn Header="Count" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Codepoint}" Header="Detail" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Count}" Header="Count" />
                         </GridView>
                     </ListView.View>
                 </ListView>
