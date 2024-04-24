@@ -18,6 +18,10 @@ public class HomeViewModel {
             new TextDataObject("Length", TextInterpreter.GetTotalLength(text)),
             new TextDataObject("Word Count", TextInterpreter.GetWordCount(text)),
             new TextDataObject("Character Count", TextInterpreter.GetCharCount(text)),
+            new TextDataObject("Pages", TextInterpreter.GetPageCount(text)),
+            new TextDataObject("Sentences", TextInterpreter.GetSentencesCount(text)),
+            new TextDataObject("Spaces", TextInterpreter.GetSpacesCount(text)),
+            new TextDataObject("Paragraphs", TextInterpreter.GetParagraphCount(text)),
         ];
 
         foreach (TextDataObject DataObject in StagingDB) {
