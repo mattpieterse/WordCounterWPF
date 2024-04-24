@@ -41,5 +41,9 @@ public class TextInterpreter {
         return count;
     }
 
+    public static int GetPageCount(string text) {
+        return ((int) Math.Floor((double) GetTotalLength(text) / 400));
+    }
+
     // TODO: Create additional parse methods
 }
