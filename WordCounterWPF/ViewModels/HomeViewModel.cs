@@ -1,7 +1,13 @@
-﻿namespace WordCounterWPF.ViewModels;
+﻿using System.Collections.ObjectModel;
+using WordCounterWPF.Models;
+
+namespace WordCounterWPF.ViewModels;
 
 public class HomeViewModel {
+
+    public ObservableCollection<TextDataObject> DataObjects { get; }
+
     public HomeViewModel() {
-        // TODO: ...
+        DataObjects = TextDataController.GetDataObjects();
     }
 }
