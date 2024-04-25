@@ -6,6 +6,10 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace WordCounterWPF.Models;
 
+/// <summary>
+/// Class containing methods to parse data points from strings.
+/// </summary>
+/// <remarks>LINQ methods may be less efficient.</remarks>
 public class TextInterpreter {
 
     public static int GetTotalLength(string text) {
@@ -30,12 +34,20 @@ public class TextInterpreter {
         return count;
     }
 
+    public static int GetCharCountLINQ(string text) {
+        return text.Count(c => !char.IsWhiteSpace(c));
+    }
+
     public static int GetLettersCount(string text) {
         int count = 0;
         foreach (char c in text) {
             if (char.IsLetter(c)) count++;
         }
         return count;
+    }
+
+    public static int GetLettersCountLINQ(string text) {
+        return text.Count(c => char.IsLetter(c));
     }
 
     public static int GetLettersUpperCaseCount(string text) {
@@ -46,12 +58,20 @@ public class TextInterpreter {
         return count;
     }
 
+    public static int GetLettersUpperCaseCountLINQ(string text) {
+        return text.Count(c => char.IsUpper(c));
+    }
+
     public static int GetLettersLowerCaseCount(string text) {
         int count = 0;
         foreach (char c in text) {
             if (char.IsLower(c)) count++;
         }
         return count;
+    }
+
+    public static int GetLettersLowerCaseCountLINQ(string text) {
+        return text.Count(c => char.IsLower(c));
     }
 
     public static int GetSpacesCount(string text) {
