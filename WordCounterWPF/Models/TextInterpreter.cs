@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using System.Windows.Media.Media3D;
+using System.Windows.Shapes;
 
 namespace WordCounterWPF.Models;
 
@@ -11,8 +12,8 @@ public class TextInterpreter {
     }
 
     public static int GetWordCount(string text) {
-        string trimmedText = text.Trim();
-        return trimmedText.Length == 0 ? 0 : trimmedText.Split(' ', '\t', '\n').Length;
+        return text.Trim().Split(null) // Split string by any whitespace
+            .Count(word => !string.IsNullOrWhiteSpace(word)); // Count non-whitespace-only strings
     }
 
     public static int GetCharCount(string text) {
