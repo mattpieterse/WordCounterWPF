@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WordCounterWPF.Models;
 
@@ -29,10 +30,18 @@ public class TextInterpreter {
         return count;
     }
 
-    public static int GetLetterCount(string text) {
+    public static int GetLettersCount(string text) {
         int count = 0;
         foreach (char c in text) {
             if (char.IsLetter(c)) count++;
+        }
+        return count;
+    }
+
+    public static int GetLettersUpper(string text) {
+        int count = 0;
+        foreach (char c in text) {
+            if (char.IsUpper(c)) count++;
         }
         return count;
     }
