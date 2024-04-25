@@ -11,8 +11,13 @@ public class TextInterpreter {
         return text.Length;
     }
 
+    /// <summary>
+    /// Counts the number of words in a string.
+    /// </summary>
+    /// <remarks>Considers any sequence of non-whitespace and non-null characters as a word.</remarks>
+    /// <returns>The integer count of words.</returns>
     public static int GetWordCount(string text) {
-        return text.Trim().Split(null) // Split string by any whitespace
+        return text.Trim().Split(null) // Split string by any whitespace character
             .Count(word => !string.IsNullOrWhiteSpace(word)); // Count non-whitespace-only strings
     }
 
