@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Linq;
+using System.Windows.Media.Media3D;
 
 namespace WordCounterWPF.Models;
 
@@ -36,33 +38,26 @@ public class TextInterpreter {
     /// <summary>
     /// Counts the occurrences of paragraphs within a string.
     /// </summary>
+    /// <remarks>All newlines are converted into a Unix Line Feed (LF).</remarks>
     /// <returns>The integer count of occurrences.</returns>
     public static int GetParagraphCount(string text) {
         if (string.IsNullOrEmpty(text)) {
             return 0;
         }
 
-        int count = 0;
-        bool isInsideParagraph = false;
-        for (int i = 0; i < text.Length; i++) {
-            char c = text[i];
+        string converted = text
+            .Replace("\r\n", "\n") // Convert: Carriage Return Line Feed (CRLF) -> Unix Line Feed (LF)
+            .Replace("\r", "\n");  // Convert: Carriage Return (CR) -> Unix Line Feed (LF)
 
-            // Check if not whitespace and not last character
-            if (!char.IsWhiteSpace(c) && (i != text.Length - 1)) {
-                // Check if still inside of a paragraph
-                if (!isInsideParagraph) {
-                    isInsideParagraph = true;
-                    count++;
+        int count = 0;
+        var lines = converted.Trim().Split("\n", StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string line in lines) {
+            if (!string.IsNullOrEmpty(line)) {          // Check for consecutive empty newlines
+                if (!string.IsNullOrWhiteSpace(line)) { // Check for lines with only whitespace
+                    count++;                            // Increment counter
                 }
             }
-            else { // End of paragraph with consecutive empty lines
-                isInsideParagraph = false;
-            }
-        }
-
-        // Check if this is the final paragraph
-        if (isInsideParagraph) {
-            count++;
         }
 
         return count;
