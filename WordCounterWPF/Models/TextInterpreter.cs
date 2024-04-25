@@ -33,6 +33,10 @@ public class TextInterpreter {
         return count;
     }
 
+    /// <summary>
+    /// Counts the occurrences of paragraphs within a string.
+    /// </summary>
+    /// <returns>The integer count of occurrences.</returns>
     public static int GetParagraphCount(string text) {
         if (string.IsNullOrEmpty(text)) {
             return 0;
@@ -43,7 +47,7 @@ public class TextInterpreter {
         for (int i = 0; i < text.Length; i++) {
             char c = text[i];
 
-            // Check for non-white character
+            // Check if not whitespace and not last character
             if (!char.IsWhiteSpace(c) && (i != text.Length - 1)) {
                 // Check if still inside of a paragraph
                 if (!isInsideParagraph) {
