@@ -1,4 +1,8 @@
 ﻿using System.Diagnostics;
+using System.Linq;
+using System.Windows.Media.Media3D;
+using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WordCounterWPF.Models;
 
@@ -8,15 +12,44 @@ public class TextInterpreter {
         return text.Length;
     }
 
+    /// <summary>
+    /// Counts the number of words in a string.
+    /// </summary>
+    /// <remarks>Considers any sequence of non-whitespace and non-null characters as a word.</remarks>
+    /// <returns>The integer count of words.</returns>
     public static int GetWordCount(string text) {
-        string trimmedText = text.Trim();
-        return trimmedText.Length == 0 ? 0 : trimmedText.Split(' ', '\t', '\n').Length;
+        return text.Trim().Split(null) // Split string by any whitespace character
+            .Count(word => !string.IsNullOrWhiteSpace(word)); // Count non-whitespace-only strings
     }
 
     public static int GetCharCount(string text) {
         int count = 0;
         foreach (char c in text) {
             if (!char.IsWhiteSpace(c)) count++;
+        }
+        return count;
+    }
+
+    public static int GetLettersCount(string text) {
+        int count = 0;
+        foreach (char c in text) {
+            if (char.IsLetter(c)) count++;
+        }
+        return count;
+    }
+
+    public static int GetLettersUpperCaseCount(string text) {
+        int count = 0;
+        foreach (char c in text) {
+            if (char.IsUpper(c)) count++;
+        }
+        return count;
+    }
+
+    public static int GetLettersLowerCaseCount(string text) {
+        int count = 0;
+        foreach (char c in text) {
+            if (char.IsLower(c)) count++;
         }
         return count;
     }
@@ -33,16 +66,37 @@ public class TextInterpreter {
         return count;
     }
 
+    /// <summary>
+    /// Counts the occurrences of paragraphs within a string.
+    /// </summary>
+    /// <remarks>All newlines are converted into a Unix Line Feed (LF).</remarks>
+    /// <returns>The integer count of occurrences.</returns>
     public static int GetParagraphCount(string text) {
-        int count = 0;
-        foreach (char c in text) {
-            if (c == '\n' || c == '\r') count++;
+        if (string.IsNullOrEmpty(text)) {
+            return 0;
         }
+
+        string converted = text
+            .Replace("\r\n", "\n") // Convert: Carriage Return Line Feed (CRLF) -> Unix Line Feed (LF)
+            .Replace("\r", "\n");  // Convert: Carriage Return (CR) -> Unix Line Feed (LF)
+
+        int count = 0;
+        var lines = converted.Trim().Split("\n", StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string line in lines) {
+            if (!string.IsNullOrEmpty(line)) {          // Check for consecutive empty newlines
+                if (!string.IsNullOrWhiteSpace(line)) { // Check for lines with only whitespace
+                    count++;                            // Increment counter
+                }
+            }
+        }
+
         return count;
     }
 
     public static int GetPageCount(string text) {
-        return ((int) Math.Floor((double) GetTotalLength(text) / 400));
+        int avgWordsInPage = 400;
+        return GetWordCount(text) / avgWordsInPage;
     }
 
     // TODO: Create additional parse methods
