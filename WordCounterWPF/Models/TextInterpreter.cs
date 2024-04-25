@@ -29,6 +29,14 @@ public class TextInterpreter {
         return count;
     }
 
+    public static int GetLetterCount(string text) {
+        int count = 0;
+        foreach (char c in text) {
+            if (char.IsLetter(c)) count++;
+        }
+        return count;
+    }
+
     public static int GetSpacesCount(string text) {
         return GetTotalLength(text) - GetTotalLength(text.Replace(" ", ""));
     }
