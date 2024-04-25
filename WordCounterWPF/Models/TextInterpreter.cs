@@ -38,10 +38,18 @@ public class TextInterpreter {
         return count;
     }
 
-    public static int GetLettersUpper(string text) {
+    public static int GetLettersUpperCaseCount(string text) {
         int count = 0;
         foreach (char c in text) {
             if (char.IsUpper(c)) count++;
+        }
+        return count;
+    }
+
+    public static int GetLettersLowerCaseCount(string text) {
+        int count = 0;
+        foreach (char c in text) {
+            if (char.IsLower(c)) count++;
         }
         return count;
     }

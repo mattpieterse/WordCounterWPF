@@ -23,6 +23,8 @@ public class HomeViewModel {
             new TextDataObject("Spaces", TextInterpreter.GetSpacesCount(text)),
             new TextDataObject("Paragraphs", TextInterpreter.GetParagraphCount(text)),
             new TextDataObject("Letters", TextInterpreter.GetLettersCount(text)),
+            new TextDataObject("Letters Upper", TextInterpreter.GetLettersUpperCaseCount(text)),
+            new TextDataObject("Letters Lower", TextInterpreter.GetLettersLowerCaseCount(text)),
         ];
 
         foreach (TextDataObject DataObject in StagingDB) {
